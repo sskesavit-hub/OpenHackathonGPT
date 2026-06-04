@@ -1,0 +1,12 @@
+{
+  "theme": "dark",
+  "active_agent": "all",
+  "search_provider": "duckduckgo",
+  "search_enabled": true,
+  "max_search_results": 5,
+  "agent_steps_visible": true,
+  "typing_animation": true,
+  "stream_responses": true,
+  "session_timeout_minutes": 60,
+  "default_language": "en"
+}

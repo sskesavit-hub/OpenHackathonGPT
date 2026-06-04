@@ -1,0 +1,43 @@
+# Core Framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.12
+python-dotenv==1.0.1
+pydantic==2.10.3
+pydantic-settings==2.6.1
+
+# LangChain + LangGraph (exact compatible set)
+langchain==0.3.12
+langchain-core==0.3.28
+langchain-community==0.3.12
+langchain-ollama==0.2.2
+langgraph==0.2.60
+langsmith==0.2.3
+langchain-openai>=0.2.11
+langchain-anthropic>=0.3.0
+langchain-groq>=0.2.1
+langchain-google-genai>=2.0.5
+
+# Database
+aiosqlite==0.20.0
+
+# Search Tools
+duckduckgo-search==7.2.1
+arxiv==2.1.3
+requests==2.32.3
+httpx==0.28.1
+crawl4ai>=0.4.0
+wikipedia-api>=0.7.0
+
+# Utilities
+slowapi==0.1.9
+websockets==14.1
+aiofiles==24.1.0
+python-json-logger==2.0.7
+rich==13.9.4
+
+# Optional future deps (commented out)
+# python-pptx==1.0.2       # PPT export
+# chromadb==0.5.23         # RAG
+# openai-whisper==20240930 # Voice
+# pytesseract==0.3.13      # OCR
