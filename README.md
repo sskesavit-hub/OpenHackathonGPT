@@ -1,4 +1,4 @@
-# OpenHackathonGPT 🚀
+# OpenHackathonGPT
 
 > A fully **local**, **multi-agent** AI Hackathon Assistant powered by **Ollama** and **LangGraph**
 
@@ -9,20 +9,21 @@
 
 ---
 
-## ✨ Features
+## Features
 
-- 🤖 **7 Specialized AI Agents** — Supervisor, Problem Discovery, Research, Innovation, Architecture, PPT, Judge Prep
-- 🔍 **Live Web Search** — DuckDuckGo, GitHub repositories, ArXiv papers
-- 💬 **Streaming Chat** — Real-time WebSocket streaming with typing animations
-- 🧩 **Dynamic Model Switching** — Auto-detects all Ollama models, switch without restart
-- 🌙 **Dark/Light Mode** — Premium glassmorphism UI
-- 📱 **Fully Responsive** — Works on mobile, tablet, and desktop
-- 💾 **Persistent History** — SQLite stores all sessions and settings
-- 🔌 **Plugin-Ready** — Extensible architecture for future agents
+- **7 Specialized AI Agents** — Supervisor, Problem Discovery, Research, Innovation, Architecture, PPT, Judge Prep
+- **Advanced Web Search & Scraping** — Supports Crawl4AI, DuckDuckGo, and Wikipedia API for live data gathering
+- **RAG Document Upload** — Upload custom context files directly into the chat for agents to reference
+- **Streaming Chat** — Real-time WebSocket streaming with instantaneous "Stop Generating" control
+- **Dynamic Model Switching** — Auto-detects all Ollama models, switch without restart
+- **Dark/Light Mode** — Premium glassmorphism UI with SVG micro-animations
+- **Fully Responsive** — Works on mobile, tablet, and desktop
+- **Persistent History** — SQLite stores all sessions, chat logs, and settings
+- **Plugin-Ready** — Extensible architecture for future agents
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -30,12 +31,13 @@
 | AI Agents | LangGraph 0.2, LangChain 0.3 |
 | LLM | Ollama (local) |
 | Database | SQLite + aiosqlite |
-| Search | DuckDuckGo, GitHub API, ArXiv |
+| Search / Scrape | Crawl4AI, DuckDuckGo, Wikipedia API |
+| Security | slowapi (Rate Limiting) |
 | Frontend | HTML5, CSS3, Vanilla JS |
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -54,7 +56,8 @@
 
 ```bash
 # 1. Clone/navigate to project
-cd "d:\ai program\Multiagent"
+git clone https://github.com/sskesavit-hub/OpenHackathonGPT.git
+cd OpenHackathonGPT
 
 # 2. Windows — run start.bat
 start.bat
@@ -72,35 +75,35 @@ uvicorn main:app --reload --port 8000
 ```
 
 ### 3. Open Browser
-Navigate to **http://localhost:8000** 🎉
+Navigate to **http://localhost:8000** 
 
 ---
 
-## 🤖 Agent Pipeline
+## Agent Pipeline
 
 ```
 User Input
-    ↓
-🧠 Supervisor Agent        — Understands intent, orchestrates workflow
-    ↓
-🔍 Problem Discovery       — Generates problem statements & pain points
-    ↓
-📡 Research Agent          — Searches web, GitHub, ArXiv
-    ↓
-💡 Innovation Agent        — Gap analysis, innovation scoring (0-100)
-    ↓
-🏗️ Architecture Agent      — System design, tech stack, API schema
-    ↓
-📊 PPT Agent               — 10-slide pitch deck content
-    ↓
-❓ Judge Prep Agent         — 15 Q&A answers for judges
-    ↓
-📋 Final Report
+    |
+Supervisor Agent        — Understands intent, orchestrates workflow
+    |
+Problem Discovery       — Generates problem statements & pain points
+    |
+Research Agent          — Searches web, GitHub, ArXiv using Crawl4AI/DuckDuckGo
+    |
+Innovation Agent        — Gap analysis, innovation scoring (0-100)
+    |
+Architecture Agent      — System design, tech stack, API schema
+    |
+PPT Agent               — 10-slide pitch deck content
+    |
+Judge Prep Agent         — 15 Q&A answers for judges
+    |
+Final Report
 ```
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -119,114 +122,47 @@ User Input
 
 ---
 
-## 📁 Project Structure
+## Troubleshooting
 
-```
-Multiagent/
-├── main.py                     # FastAPI app entry point
-├── requirements.txt
-├── .env.example
-├── .gitignore
-├── README.md
-│
-├── configs/
-│   ├── settings.py             # Pydantic settings / env loading
-│   └── default_config.json     # Default app config
-│
-├── logs/                       # Auto-created at runtime
-│
-├── database/
-│   ├── db.py                   # SQLite async connection (aiosqlite)
-│   ├── models.py               # Table schemas
-│   └── crud.py                 # CRUD operations
-│
-├── agents/
-│   ├── __init__.py
-│   ├── supervisor.py           # LangGraph supervisor / orchestrator
-│   ├── problem_discovery.py
-│   ├── research.py
-│   ├── innovation.py
-│   ├── architecture.py
-│   ├── ppt.py
-│   └── judge_prep.py
-│
-├── graph/
-│   ├── __init__.py
-│   └── workflow.py             # LangGraph StateGraph definition
-│
-├── api/
-│   ├── __init__.py
-│   ├── chat.py                 # Chat REST + WebSocket endpoints
-│   ├── models.py               # /models endpoints (Ollama scan)
-│   ├── agents.py               # Agent run/status endpoints
-│   ├── settings.py             # Settings CRUD endpoints
-│   └── health.py               # Health/status endpoints
-│
-├── services/
-│   ├── ollama_service.py       # Ollama HTTP client + model scanning
-│   ├── search_service.py       # Web/GitHub/paper search
-│   └── cache_service.py        # Search result caching in SQLite
-│
-├── plugins/                    # Plugin-ready folder (empty stubs)
-│   └── README.md
-│
-├── static/
-│   ├── index.html              # Single Page App shell
-│   ├── css/
-│   │   ├── main.css            # Design system + dark/light mode
-│   │   ├── sidebar.css
-│   │   ├── chat.css
-│   │   └── dashboard.css
-│   └── js/
-│       ├── app.js              # Router + state management
-│       ├── api.js              # API client (fetch + WebSocket)
-│       ├── components/
-│       │   ├── sidebar.js
-│       │   ├── chat.js
-│       │   ├── modelSelector.js
-│       │   ├── agentPanel.js
-│       │   ├── settings.js
-│       │   └── statusBar.js
-│       └── pages/
-│           ├── home.js
-│           ├── chatPage.js
-│           ├── agentsPage.js
-│           └── settingsPage.js
-
+### ModuleNotFoundError: No module named 'slowapi'
+If you copy the project to a new folder on Windows, the virtual environment paths will break. Do not copy the `venv` folder. Instead, delete it and recreate it:
+```bash
+rmdir /S /Q venv
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 Copy `.env.example` to `.env` and configure:
 
 ```env
 OLLAMA_BASE_URL=http://localhost:11434
 DEFAULT_MODEL=llama3
-SEARCH_PROVIDER=duckduckgo
+SEARCH_PROVIDER=crawl4ai
 LOG_LEVEL=INFO
 ```
 
 ---
 
-## 🔌 Future Plugins
+## Future Plugins
 
 | Plugin | Technology |
 |--------|-----------|
 | Voice Agent | Whisper + Kokoro TTS / XTTS |
-| RAG Agent | ChromaDB |
 | OCR Agent | Tesseract / PaddleOCR |
-| File Support | PDF, DOCX, PPTX, CSV |
 | PPT Export | python-pptx |
 | PDF Export | ReportLab |
 
 ---
 
-## 📜 License
+## License
 
 MIT License — free to use, modify, and distribute.
 
 ---
 
-Made with ❤️ using Ollama, LangGraph, FastAPI, and Vanilla JS
+Made with Ollama, LangGraph, FastAPI, and Vanilla JS
