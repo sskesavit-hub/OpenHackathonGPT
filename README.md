@@ -1,6 +1,6 @@
 # OpenHackathonGPT 🚀
 
-> A fully **local**, **multi-agent** AI Hackathon Assistant powered by **Ollama** and **LangGraph**
+> A fully **local** and **api** -llm ,**multi-agent** AI Hackathon Assistant powered by **Ollama** and **LangGraph**
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green)](https://fastapi.tiangolo.com)
